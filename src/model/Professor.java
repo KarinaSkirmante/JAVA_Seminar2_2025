@@ -68,7 +68,28 @@ public class Professor {
 	}
 
 	//4. bez argumenta konstruktors
+	public Professor()
+	{
+		setPID();
+		setName("Testa");
+		setSurname("Professors");
+		setDegree(Degree.bsc);
+	}
 	//5. argumenta konstruktors
+	public Professor(String name, String surname, Degree degree) {
+		setPID();
+		setName(name);
+		setSurname(surname);
+		setDegree(degree);
+	}
+
+	
 	//6. toString funkcija
+	@Override
+	public String toString() {
+		return pID + ": "+ degree + ", " + name + " " + surname;
+	}
+	
+	
 	//7. citas funkcijas (pec nepieciesamibas)
 }
