@@ -52,7 +52,29 @@ public class Student {
 	
 	
 	//4. bez argumenta konstruktors
+	public Student() {
+		setStID();
+		setName("Testa");
+		setSurname("Students");
+	}
+	
 	//5. argumena konstruktors
+	public Student(String name, String surname) {
+		setStID();
+		setName(name);
+		setSurname(surname);
+	}
+
+	
 	//6. toString funkcija
+	//parrakstam object klases toString funkciju
+	//2: Karlis Lielais
+	@Override
+	public String toString() {
+		return stID + ": " + name + " " + surname;
+	}
+	
+	
+	
 	//7. citas funkcijas (ja nepieciesams)
 }
