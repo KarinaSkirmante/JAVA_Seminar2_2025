@@ -50,12 +50,13 @@ public class MainService {
 		try {
 			createProfessor("Karlis", "Immers", Degree.mg);
 			//createProfessor("Karlis", "Immers", Degree.mg);//sagaidu izņēmumu šeit
-			System.out.println(allProfessors);
+			System.out.println("Pievienots jauns profesors: " + allProfessors);
 			System.out.println("10001 profesors: " + retrieveProfessorById(10001));
 			
-			updateProfessorById(-90, "Karina", "Krinkele", Degree.dr);
-			System.out.println(allProfessors);
-			
+			updateProfessorById(10001, "Karina", "Krinkele", Degree.dr);
+			System.out.println("Atjaunots eksistejoss profesors: " + allProfessors);
+			deleteProfessorById(10000);
+			System.out.println("Izdzest testa profesors: " + allProfessors);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -120,7 +121,7 @@ public class MainService {
 		
 	}
 
-	
+	//U - update
 	public static void updateProfessorById(int id, String inputName, 
 			String inputSurname, Degree inputDegree) throws Exception
 	
@@ -141,6 +142,11 @@ public class MainService {
 		}
 		
 	}
-	
+	//D - delete
+	public static void deleteProfessorById(int id) throws Exception {
+		Professor foundProfessor = retrieveProfessorById(id);
+		
+		allProfessors.remove(foundProfessor);
+	}
 	
 }
