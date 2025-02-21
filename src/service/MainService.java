@@ -74,16 +74,20 @@ public class MainService {
 		//System.out.println(c1);
 
 		Course c2 = new Course("JAVA programesana", 6, p2);
+		Course c4 = new Course("Datu Strukturas un pamatalgoritmi", 4, p2);
 		//System.out.println(c2);
 	
 		Course c3;
 		try {
 			c3 = new Course("Operetajsistemas", 6, retrieveProfessorById(10002));
-			allCourses.addAll(Arrays.asList(c1, c2, c3));
+			allCourses.addAll(Arrays.asList(c1, c2, c3, c4));
 		
 		
 		
-		System.out.println(allCourses);
+			System.out.println(allCourses);
+			System.out.println("Prof.Karina Krinkele vada " + howManyCoursesAreLeadByProfessorById(10001) + " kursus");
+		
+		
 		System.out.println("------------------ATZIMES---------------");
 		Grade g1 = new Grade();//testa atzime
 		//System.out.println(g1);
@@ -227,8 +231,25 @@ public class MainService {
 		}
 	
 	
-	
-	//TODO uztaisīt kādam no pasniedzāējam vel vienu kursu
-	//aprēķināt cik kursus pasniedz konkrētais pasniedzējs
+	public static int howManyCoursesAreLeadByProfessorById(int id) throws Exception {
+		
+		retrieveProfessorById(id);
+		
+		int howManyCourses = 0;
+		for(Course tempC: allCourses) {
+			if(tempC.getProfessor().getpID() == id) {
+				howManyCourses++;
+			}
+		}
+		
+		
+		if(howManyCourses == 0) {
+			throw new Exception("profesoram nav neviens piesaistits kurss");
+		}
+		
+		return howManyCourses;
+		
+	}
+		
 	
 }
