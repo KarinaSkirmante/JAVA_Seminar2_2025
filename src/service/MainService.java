@@ -33,8 +33,8 @@ public class MainService {
 		Student st4 = new Student("786s78rfa6", "Skirm$ante");
 		//System.out.println(st4);//3: unknown unknown
 		
-		
-		allStudents.addAll(Arrays.asList(st1, st2, st3, st4));
+		Student st5 = new Student("Laura", "Gudra");
+		allStudents.addAll(Arrays.asList(st1, st2, st3, st4, st5));
 		System.out.println(allStudents);
 		
 		
@@ -75,21 +75,34 @@ public class MainService {
 
 		Course c2 = new Course("JAVA programesana", 6, p2);
 		//System.out.println(c2);
+	
+		Course c3;
+		try {
+			c3 = new Course("Operetajsistemas", 6, retrieveProfessorById(10002));
+			allCourses.addAll(Arrays.asList(c1, c2, c3));
 		
-		allCourses.addAll(Arrays.asList(c1, c2));
+		
+		
 		System.out.println(allCourses);
 		System.out.println("------------------ATZIMES---------------");
-		Grade g1 = new Grade();
+		Grade g1 = new Grade();//testa atzime
 		//System.out.println(g1);
 		
-		Grade g2 = new Grade(10, st2, c2);
+		Grade g2 = new Grade(10, st2, c2);//10 nopelnīja Janis JAVA kursā
 		//System.out.println(g2);
 		
-		Grade g3 = new Grade(8, st3, c2);
+		Grade g3 = new Grade(8, st3, c2);//8 nopelnioja Anna Paula JAVA kursā
+		Grade g4 = new Grade(3, st2, c3);//3 nopelnīja Jānis OS kursā
+		Grade g5 = new Grade(5, st3, c3);//5 nopelnija Anna Paula OS kursā
 		//System.out.println(g3);
-		allGrades.addAll(Arrays.asList(g1, g2, g3));
+		allGrades.addAll(Arrays.asList(g1, g2, g3, g4, g5));
 		System.out.println(allGrades);
 		
+		System.out.println("Jana vid.atzime: " + calculateAvgGradeForStudentById(1));
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	//CRUD
@@ -171,8 +184,51 @@ public class MainService {
 		
 		return results;
 		
+	}
+	
+	//aprēķina vidējo atzīmi, ja padod studenta id
+	public static float calculateAvgGradeForStudentById(int id) throws Exception{
+
+		retrieveStudentById(id);//parbaudam, vai students vispar eksistē, ja eksistē, tad turpinam ar nako rinduņu, ja ne, tad tiks izmest izņemums
 		
+		
+		
+		int howManyGrades = 0;
+		float sum = 0;
+		for(Grade tempG : allGrades) {
+			if(tempG.getStudent().getStID() == id) {
+				howManyGrades++;
+				sum += tempG.getGrValue();
+			}
+		}
+		
+		if(howManyGrades == 0) {
+			throw new Exception("Studentam nav piesaistita neviena atzime");
+		}
+		
+		return sum/howManyGrades;
 		
 	}
+	
+	//R - retrieve
+		public static Student retrieveStudentById(int id) throws Exception{
+			if(id < 0) {
+				throw new Exception("Id nevar but negativs");
+			}
+			
+			for(Student tempS : allStudents) {
+				if(tempS.getStID() == id) {
+					return tempS;
+				}
+			}
+			
+			throw new Exception("Students ar noradito id neeksiste");
+			
+		}
+	
+	
+	
+	//TODO uztaisīt kādam no pasniedzāējam vel vienu kursu
+	//aprēķināt cik kursus pasniedz konkrētais pasniedzējs
 	
 }
