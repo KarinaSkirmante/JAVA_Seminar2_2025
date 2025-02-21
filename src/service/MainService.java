@@ -103,6 +103,7 @@ public class MainService {
 		System.out.println(allGrades);
 		
 		System.out.println("Jana vid.atzime: " + calculateAvgGradeForStudentById(1));
+		System.out.println(retreiveAllFailedGrades());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -250,6 +251,19 @@ public class MainService {
 		return howManyCourses;
 		
 	}
+	//izfiltrē un atgriež visas nesekmīgās atzīmes
+	public static ArrayList<Grade> retreiveAllFailedGrades(){
+		ArrayList<Grade> results = new ArrayList<Grade>();
 		
+		for(Grade tempG: allGrades) {
+			if(tempG.getGrValue() < 4)
+			{
+				results.add(tempG);
+			}
+		}
+		
+		return results;
+	}
+	//saskaita, cik ir kursi pie noteikta CP skaita (CP->2KP, cik ir kursi tiesi ar 2KP)
 	
 }
