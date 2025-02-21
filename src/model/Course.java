@@ -75,7 +75,18 @@ public class Course {
 	
 	
 	//5. argumenta konstruktors
+	public Course(String inputTitle, int inputCreditPoints, Professor inputProfessor)
+	{
+		setCID();
+		setTitle(inputTitle);
+		setCreditPoints(inputCreditPoints);
+		setProfessor(inputProfessor);
+	}
 	//6. toString funkcija
+	public String toString() {
+		return cID + ": " + title + " (" + creditPoints + " KP) " 
+				+ professor.getName().charAt(0) + ". " + professor.getSurname();
+	}
 	//7. citas funkcijas (pec nepieciesamibas)
 
 }
