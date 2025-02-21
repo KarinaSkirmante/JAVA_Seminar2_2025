@@ -50,12 +50,18 @@ public class MainService {
 		try {
 			createProfessor("Karlis", "Immers", Degree.mg);
 			//createProfessor("Karlis", "Immers", Degree.mg);//sagaidu izņēmumu šeit
+			System.out.println(allProfessors);
+			System.out.println("10001 profesors: " + retrieveProfessorById(10001));
+			
+			updateProfessorById(-90, "Karina", "Krinkele", Degree.dr);
+			System.out.println(allProfessors);
+			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		System.out.println(allProfessors);
+
 		
 		
 		System.out.println("------------------KURSI---------------");
@@ -114,4 +120,27 @@ public class MainService {
 		
 	}
 
+	
+	public static void updateProfessorById(int id, String inputName, 
+			String inputSurname, Degree inputDegree) throws Exception
+	
+	{
+		Professor foundProfessor = retrieveProfessorById(id);
+		
+		if(inputName != null && !foundProfessor.getName().equals(inputName))
+		{
+			foundProfessor.setName(inputName);
+		}
+		
+		if(inputSurname != null && !foundProfessor.getSurname().equals(inputSurname)) {
+			foundProfessor.setSurname(inputSurname);
+		}
+		
+		if(inputDegree != null && !foundProfessor.getDegree().equals(inputDegree)) {
+			foundProfessor.setDegree(inputDegree);
+		}
+		
+	}
+	
+	
 }
