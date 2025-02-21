@@ -1,7 +1,10 @@
 package service;
 
+
+
 import model.Course;
 import model.Degree;
+import model.Grade;
 import model.Professor;
 import model.Student;
 
@@ -34,6 +37,16 @@ public class MainService {
 
 		Course c2 = new Course("JAVA programesana", 6, p2);
 		System.out.println(c2);
+		
+		System.out.println("------------------ATZIMES---------------");
+		Grade g1 = new Grade();
+		System.out.println(g1);
+		
+		Grade g2 = new Grade(10, st2, c2);
+		System.out.println(g2);
+		
+		Grade g3 = new Grade(8, st3, c2);
+		System.out.println(g3);
 		
 	}
 
