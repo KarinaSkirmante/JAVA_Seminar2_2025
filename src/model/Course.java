@@ -54,7 +54,26 @@ public class Course {
 		}
 	}
 	
+	public void setProfessor(Professor inputProfessor) {
+		if(professor != null) {
+			professor = inputProfessor;
+		}
+		else
+		{
+			professor = new Professor();
+		}
+	}
+	
 	//4. bez argumenta konstruktors
+	public Course()
+	{
+		setCID();
+		setTitle("Testa kurss");
+		setCreditPoints(1);
+		setProfessor(new Professor());
+	}
+	
+	
 	//5. argumenta konstruktors
 	//6. toString funkcija
 	//7. citas funkcijas (pec nepieciesamibas)
