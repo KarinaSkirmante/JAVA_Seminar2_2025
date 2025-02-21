@@ -46,6 +46,15 @@ public class MainService {
 		//System.out.println(p2);
 		
 		allProfessors.addAll(Arrays.asList(p1, p2));
+		
+		try {
+			createProfessor("Karlis", "Immers", Degree.mg);
+			//createProfessor("Karlis", "Immers", Degree.mg);//sagaidu izņēmumu šeit
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		System.out.println(allProfessors);
 		
 		
@@ -89,6 +98,20 @@ public class MainService {
 		
 	}
 	
-	
+	//R - retrieve
+	public static Professor retrieveProfessorById(int id) throws Exception{
+		if(id < 0) {
+			throw new Exception("Id nevar but negativs");
+		}
+		
+		for(Professor tempP : allProfessors) {
+			if(tempP.getpID() == id) {
+				return tempP;
+			}
+		}
+		
+		throw new Exception("Profesors ar noradito id neeksiste");
+		
+	}
 
 }
