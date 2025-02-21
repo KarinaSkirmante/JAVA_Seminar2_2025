@@ -55,7 +55,7 @@ public class Course {
 	}
 	
 	public void setProfessor(Professor inputProfessor) {
-		if(professor != null) {
+		if(inputProfessor != null) {
 			professor = inputProfessor;
 		}
 		else
