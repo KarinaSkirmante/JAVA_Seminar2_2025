@@ -71,5 +71,24 @@ public class MainService {
 		System.out.println(allGrades);
 		
 	}
+	
+	//CRUD
+	//C-create
+	public static void createProfessor(String name, String surname, Degree degree) throws Exception {
+		//parbaudam, vai tads profesors jau eksiste
+		for(Professor tempP : allProfessors) {
+			if(tempP.getName().equals(name)
+					&& tempP.getSurname().equals(surname)
+					&& tempP.getDegree().equals(degree))
+			{
+				throw new Exception("Tads profesors jau eksiste sistema");
+			}
+		}
+		
+		allProfessors.add(new Professor(name, surname, degree));
+		
+	}
+	
+	
 
 }
