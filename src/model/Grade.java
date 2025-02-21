@@ -60,11 +60,24 @@ public class Grade {
 	}
 	
 	//4. noklusetais konstruktors
-	
+	public Grade() {
+		setGID();
+		setGrValue(0);
+		setStudent(new Student());
+		setCourse(new Course());
+	}
 	//5. argumenta konstruktors
-	
+	public Grade(int inputGrValue, Student inputStudent, Course inputCourse) {
+		setGID();
+		setGrValue(inputGrValue);
+		setStudent(inputStudent);
+		setCourse(inputCourse);
+	}
 	//6. toString
-	
+	public String toString() {
+		return gID + ": " + grValue + " (" + course.getTitle() + ") -> " 
+				+ student.getName().charAt(0) + ". " + student.getSurname();  
+	}
 	//7. citas funkcijas (ja nepieciešams)
 
 }
