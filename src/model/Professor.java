@@ -1,6 +1,6 @@
 package model;
 
-public class Professor {
+public class Professor extends Person{
 	//1. mainigie
 	private long pID;
 
@@ -13,14 +13,7 @@ public class Professor {
 		return pID;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public String getSurname() {
-		return surname;
-	}
-
+	
 	public Degree getDegree() {
 		return degree;
 	}
@@ -32,29 +25,7 @@ public class Professor {
 		pID = counter++;
 	}
 	
-	public void setName(String inputName) {
-		if(inputName != null 
-				&& inputName.matches("[A-Z]{1}[a-z]{3,10}([ ][A-Z]{1}[a-z]{3,10})?"))
-		{
-			name = inputName;
-		}
-		else
-		{
-			name = "unknown";
-		}
-	}
-	
-	public void setSurname(String inputSurname) {
-		if(inputSurname != null
-				&& inputSurname.matches("[A-Z]{1}[a-z]{3,10}([-][A-Z]{1}[a-z]{3,10})?"))
-		{
-			surname = inputSurname;
-		}
-		else
-		{
-			surname = "unknown";
-		}
-	}
+
 	
 	public void setDegree(Degree inputDegree) {
 		if(inputDegree != null) {
@@ -69,16 +40,15 @@ public class Professor {
 	//4. bez argumenta konstruktors
 	public Professor()
 	{
+		super();
 		setPID();
-		setName("Testa");
-		setSurname("Professors");
+		setSurname("Profesors");
 		setDegree(Degree.bsc);
 	}
 	//5. argumenta konstruktors
 	public Professor(String name, String surname, Degree degree) {
+		super(name, surname);
 		setPID();
-		setName(name);
-		setSurname(surname);
 		setDegree(degree);
 	}
 
@@ -86,7 +56,7 @@ public class Professor {
 	//6. toString funkcija
 	@Override
 	public String toString() {
-		return pID + ": "+ degree + ", " + name + " " + surname;
+		return pID + ": "+ degree + ", " + super.toString();
 	}
 	
 	
