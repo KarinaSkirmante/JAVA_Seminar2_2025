@@ -8,13 +8,13 @@ import java.util.Arrays;
 import model.Course;
 import model.Degree;
 import model.Grade;
+import model.Person;
 import model.Professor;
 import model.Student;
 
 public class MainService {
 	
-	private static ArrayList<Student> allStudents = new ArrayList<Student>();
-	private static ArrayList<Professor> allProfessors = new ArrayList<Professor>();
+	private static ArrayList<Person> allPersons = new ArrayList<Person>();
 	private static ArrayList<Course> allCourses = new ArrayList<Course>();
 	private static ArrayList<Grade> allGrades = new ArrayList<Grade>();
 	
@@ -34,8 +34,8 @@ public class MainService {
 		//System.out.println(st4);//3: unknown unknown
 		
 		Student st5 = new Student("Laura", "Gudra");
-		allStudents.addAll(Arrays.asList(st1, st2, st3, st4, st5));
-		System.out.println(allStudents);
+		allPersons.addAll(Arrays.asList(st1, st2, st3, st4, st5));
+		System.out.println(allPersons);
 		
 		
 		System.out.println("------------------PROFESORI---------------");
@@ -45,20 +45,20 @@ public class MainService {
 		Professor p2 = new Professor("Karina", "Skirmante", Degree.mg);
 		//System.out.println(p2);
 		
-		allProfessors.addAll(Arrays.asList(p1, p2));
+		allPersons.addAll(Arrays.asList(p1, p2));
 		
 		try {
 			createProfessor("Karlis", "Immers", Degree.mg);
 			createProfessor("Raita",  "Rollande", Degree.dr);
 			createProfessor("Juris", "Zagars", Degree.dr);
 			//createProfessor("Karlis", "Immers", Degree.mg);//sagaidu izņēmumu šeit
-			System.out.println("Pievienots jauns profesors: " + allProfessors);
+			System.out.println("Pievienots jauns profesors: " + allPersons);
 			System.out.println("10001 profesors: " + retrieveProfessorById(10001));
 			
 			updateProfessorById(10001, "Karina", "Krinkele", Degree.dr);
-			System.out.println("Atjaunots eksistejoss profesors: " + allProfessors);
+			System.out.println("Atjaunots eksistejoss profesors: " + allPersons);
 			deleteProfessorById(10000);
-			System.out.println("Izdzest testa profesors: " + allProfessors);
+			System.out.println("Izdzest testa profesors: " + allPersons);
 			
 			System.out.println("Profesori ar dr gradu: " + filterProfessorByDegree(Degree.dr) );
 		} catch (Exception e) {
@@ -114,16 +114,23 @@ public class MainService {
 	//C-create
 	public static void createProfessor(String name, String surname, Degree degree) throws Exception {
 		//parbaudam, vai tads profesors jau eksiste
-		for(Professor tempP : allProfessors) {
-			if(tempP.getName().equals(name)
-					&& tempP.getSurname().equals(surname)
-					&& tempP.getDegree().equals(degree))
+		for(Person tempP : allPersons) {
+			if(tempP instanceof Professor)//parbauda vai persona ir profesors
 			{
-				throw new Exception("Tads profesors jau eksiste sistema");
+				Professor tempPP = (Professor)tempP;
+				if(tempPP.getName().equals(name)
+					&& tempPP.getSurname().equals(surname)
+					&& tempPP.getDegree().equals(degree))
+				{
+					throw new Exception("Tads profesors jau eksiste sistema");
+				}
+			
+			
+		
+				
 			}
 		}
-		
-		allProfessors.add(new Professor(name, surname, degree));
+		allPersons.add(new Professor(name, surname, degree));
 		
 	}
 	
@@ -133,9 +140,13 @@ public class MainService {
 			throw new Exception("Id nevar but negativs");
 		}
 		
-		for(Professor tempP : allProfessors) {
-			if(tempP.getpID() == id) {
-				return tempP;
+		for(Person tempP : allPersons) {
+			if(tempP instanceof Professor)
+			{
+				Professor tempPP = (Professor)tempP;
+				if(tempPP.getpID() == id) {
+					return tempPP;
+				}
 			}
 		}
 		
