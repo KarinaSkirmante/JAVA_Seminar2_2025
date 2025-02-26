@@ -52,7 +52,15 @@ public class MainService {
 			createProfessor("Raita",  "Rollande", Degree.dr);
 			createProfessor("Juris", "Zagars", Degree.dr);
 			//createProfessor("Karlis", "Immers", Degree.mg);//sagaidu izņēmumu šeit
-			System.out.println("Pievienots jauns profesors: " + allPersons);
+			System.out.println("Pievienots jauns profesors: ");
+			for(Person tempP : allPersons) {
+				if(tempP instanceof Professor)
+				{
+					System.out.print(tempP + " ");
+				}
+			}
+			System.out.println();
+			
 			System.out.println("10001 profesors: " + retrieveProfessorById(10001));
 			
 			updateProfessorById(10001, "Karina", "Krinkele", Degree.dr);
@@ -179,7 +187,7 @@ public class MainService {
 	public static void deleteProfessorById(int id) throws Exception {
 		Professor foundProfessor = retrieveProfessorById(id);
 		
-		allProfessors.remove(foundProfessor);
+		allPersons.remove(foundProfessor);
 	}
 	
 	//filtret profesorus pec grada
@@ -191,10 +199,15 @@ public class MainService {
 		
 		ArrayList<Professor> results = new ArrayList<Professor>();
 		
-		for(Professor tempP : allProfessors) {
-			if(tempP.getDegree().equals(inputDegree)) {
-				results.add(tempP);
+		for(Person tempP : allPersons) {
+			if(tempP instanceof Professor)
+			{
+				Professor tempPP = (Professor)tempP;
+				if(tempPP.getDegree().equals(inputDegree)) {
+					results.add(tempPP);
+				}
 			}
+		
 		}
 		
 		
@@ -232,9 +245,13 @@ public class MainService {
 				throw new Exception("Id nevar but negativs");
 			}
 			
-			for(Student tempS : allStudents) {
-				if(tempS.getStID() == id) {
-					return tempS;
+			for(Person tempP : allPersons) {
+				if(tempP instanceof Student)
+				{
+					Student tempS = (Student)tempP;
+					if(tempS.getStID() == id) {
+						return tempS;
+					}
 				}
 			}
 			
