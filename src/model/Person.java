@@ -1,29 +1,20 @@
 package model;
 
-public class Student {
-
+public class Person {
 	//1. mainigie
-	private long stID;
-
-	
-	private static long counter = 0;
+	private String name;
+	private String surname;
 	
 	//2. getters
-	public long getStID() {
-		return stID;
-	}
 	public String getName() {
 		return name;
 	}
+
 	public String getSurname() {
 		return surname;
 	}
+	//3. setters
 
-	//3. setter
-	public void setStID() {
-		stID = counter++;
-	}
-	
 	public void setName(String inputName) {
 		if(inputName != null 
 				&& inputName.matches("[A-Z]{1}[a-z]{3,10}([ ][A-Z]{1}[a-z]{3,10})?"))
@@ -47,33 +38,24 @@ public class Student {
 			surname = "unknown";
 		}
 	}
+	//4. bezargumenta konstr.
 	
-	
-	
-	//4. bez argumenta konstruktors
-	public Student() {
-		setStID();
+	public Person()
+	{
 		setName("Testa");
-		setSurname("Students");
+		setSurname("Persona");
 	}
 	
-	//5. argumena konstruktors
-	public Student(String name, String surname) {
-		setStID();
-		setName(name);
-		setSurname(surname);
-	}
-
 	
-	//6. toString funkcija
-	//parrakstam object klases toString funkciju
-	//2: Karlis Lielais
-	@Override
+	//5. argum. konstruktors
+	public Person(String inputName, String inputSurname)
+	{
+		setName(inputName);
+		setSurname(inputSurname);
+	}
+	
+	//6. toString
 	public String toString() {
-		return stID + ": " + name + " " + surname;
+		return name + " " + surname;
 	}
-	
-	
-	
-	//7. citas funkcijas (ja nepieciesams)
 }
